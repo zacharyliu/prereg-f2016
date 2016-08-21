@@ -77,17 +77,20 @@
         this._setDisabled(true);
         this._setText('Subscribing...');
         this._setIconClass('fa-circle-o-notch fa-spin');
+        ga('send', 'event', 'SubscribeForm', 'loading');
         break;
       case 'error':
         this._setDisabled(false);
         this._setText('Could not subscribe. Check your email address and try again.');
         this._setIconClass('fa-exclamation-triangle');
+        ga('send', 'event', 'SubscribeForm', 'error');
         break;
       case 'success':
         this._setDisabled(true);
         this._setText('Success! Check your inbox to confirm your subscription.');
         this._setIconClass('fa-check');
         this._setNextState('ready', 2000);
+        ga('send', 'event', 'SubscribeForm', 'success');
         break;
     }
     this._currentState = state;
