@@ -35,7 +35,7 @@ body {
 .page-container {
   width: 1000px;
   height: 100vh;
-  min-height: 600px;
+  min-height: 700px;
   position: relative;
   margin: 0 auto;
 }
@@ -131,17 +131,19 @@ body {
   opacity: 0;
   position: relative;
   right: -5px;
-  transition: opacity 0.1s ease-out, right 0.1s ease-out;
+  transition: opacity 0.1s ease-out, right 0.1s ease-out, margin 0.1s ease-out;
   text-transform: uppercase;
   font-weight: 300;
   letter-spacing: 0.2em;
   font-size: 10pt;
+  margin-bottom: -50px;
 }
 
 .subscribe-form--has-text .subscribe-form__button,
 .subscribe-form__input:focus + .subscribe-form__button {
   opacity: 1;
   right: 0;
+  margin-bottom: 0;
 }
 
 .subscribe-form__button[disabled] {
@@ -150,6 +152,31 @@ body {
 
 .subscribe-form__text {
   font-size: 10pt;
+}
+
+.contact-info {
+  position: absolute;
+  right: 0;
+  bottom: 30px;
+  text-align: right;
+}
+
+.contact-info__link {
+  color: white;
+  text-decoration: none;
+}
+
+.contact-info__link:hover {
+  text-decoration: underline;
+}
+
+.contact-info__icon-link {
+  margin: 0 5px;
+}
+
+.contact-info__bar {
+  border-right: 1px solid white;
+  margin: 0 10px;
 }
 
 @media (max-width: 1020px) {
@@ -222,5 +249,11 @@ body {
   .subscribe-form__text {
     margin-left: 10px;
     margin-right: 10px;
+  }
+
+  .contact-info {
+    position: static;
+    text-align: center;
+    font-size: 10pt;
   }
 }
