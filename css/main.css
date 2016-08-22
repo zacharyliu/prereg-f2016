@@ -137,6 +137,7 @@ body {
   letter-spacing: 0.2em;
   font-size: 10pt;
   margin-bottom: -50px;
+  pointer-events: none;
 }
 
 .subscribe-form--has-text .subscribe-form__button,
@@ -144,6 +145,7 @@ body {
   opacity: 1;
   right: 0;
   margin-bottom: 0;
+  pointer-events: auto;
 }
 
 .subscribe-form__button[disabled] {
