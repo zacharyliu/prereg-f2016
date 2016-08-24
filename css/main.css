@@ -154,6 +154,11 @@ body {
 
 .subscribe-form__text {
   font-size: 10pt;
+  max-width: 500px;
+}
+
+.subscribe-form__text a {
+  color: white;
 }
 
 .contact-info {

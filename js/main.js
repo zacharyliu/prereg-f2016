@@ -22,9 +22,13 @@
     $.getJSON(url, {
       'EMAIL': this._$input.val()
     }).then(function (data, textStatus, jqXHR) {
-      if (textStatus != 'success'
-        || !data
-        || data.result !== 'success') return $.Deferred().reject().promise();
+      if (!data) {
+        return $.Deferred().reject().promise();
+      } else if (textStatus != 'success' || data.result !== 'success') {
+        _this._$input.shake({times: 2, speed: 60});
+        _this.setState('error', data.msg);
+        return;
+      }
       _this.setState('success');
     }).fail(function () {
       _this._$input.shake({times: 2, speed: 60});
@@ -58,14 +62,14 @@
     this._$icon.show().attr('class', 'fa fa-fw ' + iconClass);
   };
   SubscribeForm.prototype._setText = function (text) {
-    this._$text.text(text);
+    this._$text.html(text);
   };
   SubscribeForm.prototype._setNextState = function (nextState, timeout) {
     this._timeout = setTimeout(function () {
       this.setState(nextState);
     }.bind(this), timeout);
   };
-  SubscribeForm.prototype.setState = function (state) {
+  SubscribeForm.prototype.setState = function (state, msg) {
     clearTimeout(this._timeout);
     switch (state) {
       case 'ready':
@@ -81,7 +85,7 @@
         break;
       case 'error':
         this._setDisabled(false);
-        this._setText('Could not subscribe. Check your email address and try again.');
+        this._setText(msg || 'Something went wrong. Try again or message us on Facebook for help.');
         this._setIconClass('fa-exclamation-triangle');
         ga('send', 'event', 'SubscribeForm', 'error');
         break;
